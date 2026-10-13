@@ -1,0 +1,674 @@
+{
+  "description": "Farneback dense optical flow on 8 consecutive-frame pairs per video (frames downscaled to 160 px wide), summarised as 8-bin direction histograms on a 2x2 grid, then mean and standard deviation over time.",
+  "decision_rule": "Flow fusion is used only if it gets at least 2 more validation videos right than the visual features alone, improves validation macro-F1, and costs under 1000 ms per video.",
+  "class_names": [
+    "BodyWeightSquats",
+    "JumpingJack",
+    "PullUps",
+    "PushUps"
+  ],
+  "val_videos": 75,
+  "test_videos": 125,
+  "flow_ms_per_video": 40.54175000055693,
+  "models": {
+    "flow_svm": {
+      "display_name": "Optical-flow histograms + SVM",
+      "input_dim": 72,
+      "validation": {
+        "val_accuracy": 0.68,
+        "val_macro_f1": 0.6318190263842438
+      },
+      "selected_hyperparameters": {
+        "C": 0.0001,
+        "val_accuracy": 0.68,
+        "val_macro_f1": 0.6318190263842438,
+        "training_seconds": 0.0113
+      },
+      "candidates": [
+        {
+          "C": 0.0001,
+          "val_accuracy": 0.68,
+          "val_macro_f1": 0.6318190263842438,
+          "training_seconds": 0.0113
+        },
+        {
+          "C": 0.0003,
+          "val_accuracy": 0.6266666666666667,
+          "val_macro_f1": 0.5704610363117095,
+          "training_seconds": 0.0035
+        },
+        {
+          "C": 0.001,
+          "val_accuracy": 0.5466666666666666,
+          "val_macro_f1": 0.4820762131737742,
+          "training_seconds": 0.0057
+        },
+        {
+          "C": 0.003,
+          "val_accuracy": 0.56,
+          "val_macro_f1": 0.49608101606378385,
+          "training_seconds": 0.0044
+        },
+        {
+          "C": 0.01,
+          "val_accuracy": 0.5333333333333333,
+          "val_macro_f1": 0.4842611190817791,
+          "training_seconds": 0.0065
+        },
+        {
+          "C": 0.1,
+          "val_accuracy": 0.48,
+          "val_macro_f1": 0.4335697827077138,
+          "training_seconds": 0.008
+        },
+        {
+          "C": 1.0,
+          "val_accuracy": 0.49333333333333335,
+          "val_macro_f1": 0.4425241425241425,
+          "training_seconds": 0.0108
+        },
+        {
+          "C": 10.0,
+          "val_accuracy": 0.49333333333333335,
+          "val_macro_f1": 0.4365147431185167,
+          "training_seconds": 0.0337
+        }
+      ],
+      "num_videos": 125,
+      "accuracy": 0.584,
+      "accuracy_ci95": [
+        0.4963484728052327,
+        0.6666423624529447
+      ],
+      "macro_precision": 0.5952671964663243,
+      "macro_recall": 0.5999517374517375,
+      "macro_f1": 0.5815057764243499,
+      "per_class": {
+        "BodyWeightSquats": {
+          "precision": 0.53125,
+          "recall": 0.5666666666666667,
+          "f1": 0.5483870967741935,
+          "support": 30
+        },
+        "JumpingJack": {
+          "precision": 0.6363636363636364,
+          "recall": 0.3783783783783784,
+          "f1": 0.4745762711864407,
+          "support": 37
+        },
+        "PullUps": {
+          "precision": 0.5348837209302325,
+          "recall": 0.8214285714285714,
+          "f1": 0.647887323943662,
+          "support": 28
+        },
+        "PushUps": {
+          "precision": 0.6785714285714286,
+          "recall": 0.6333333333333333,
+          "f1": 0.6551724137931034,
+          "support": 30
+        }
+      },
+      "confusion_matrix": [
+        [
+          17,
+          3,
+          5,
+          5
+        ],
+        [
+          14,
+          14,
+          6,
+          3
+        ],
+        [
+          0,
+          4,
+          23,
+          1
+        ],
+        [
+          1,
+          1,
+          9,
+          19
+        ]
+      ],
+      "accuracy_ci95_group_bootstrap": [
+        0.4409448818897638,
+        0.7250201612903224
+      ]
+    },
+    "cnn_pooled_svm": {
+      "display_name": "MobileNetV3 mean pooling + SVM (baseline)",
+      "input_dim": 1024,
+      "validation": {
+        "val_accuracy": 0.92,
+        "val_macro_f1": 0.9209473150962513
+      },
+      "selected_hyperparameters": {
+        "C": 0.0001,
+        "val_accuracy": 0.92,
+        "val_macro_f1": 0.9209473150962513,
+        "training_seconds": 0.0205
+      },
+      "candidates": [
+        {
+          "C": 0.0001,
+          "val_accuracy": 0.92,
+          "val_macro_f1": 0.9209473150962513,
+          "training_seconds": 0.0205
+        },
+        {
+          "C": 0.0003,
+          "val_accuracy": 0.92,
+          "val_macro_f1": 0.9196859903381642,
+          "training_seconds": 0.0243
+        },
+        {
+          "C": 0.001,
+          "val_accuracy": 0.92,
+          "val_macro_f1": 0.9196859903381642,
+          "training_seconds": 0.0342
+        },
+        {
+          "C": 0.003,
+          "val_accuracy": 0.8933333333333333,
+          "val_macro_f1": 0.8920544113907958,
+          "training_seconds": 0.0577
+        },
+        {
+          "C": 0.01,
+          "val_accuracy": 0.8933333333333333,
+          "val_macro_f1": 0.8920544113907958,
+          "training_seconds": 0.083
+        },
+        {
+          "C": 0.1,
+          "val_accuracy": 0.8933333333333333,
+          "val_macro_f1": 0.8920544113907958,
+          "training_seconds": 0.1766
+        },
+        {
+          "C": 1.0,
+          "val_accuracy": 0.8933333333333333,
+          "val_macro_f1": 0.8920544113907958,
+          "training_seconds": 0.1839
+        },
+        {
+          "C": 10.0,
+          "val_accuracy": 0.8933333333333333,
+          "val_macro_f1": 0.8920544113907958,
+          "training_seconds": 0.1888
+        }
+      ],
+      "num_videos": 125,
+      "accuracy": 0.776,
+      "accuracy_ci95": [
+        0.6953100627209139,
+        0.8402312531273837
+      ],
+      "macro_precision": 0.7775883198106829,
+      "macro_recall": 0.782014157014157,
+      "macro_f1": 0.7753314393939394,
+      "per_class": {
+        "BodyWeightSquats": {
+          "precision": 0.7666666666666667,
+          "recall": 0.7666666666666667,
+          "f1": 0.7666666666666667,
+          "support": 30
+        },
+        "JumpingJack": {
+          "precision": 0.8620689655172413,
+          "recall": 0.6756756756756757,
+          "f1": 0.7575757575757576,
+          "support": 37
+        },
+        "PullUps": {
+          "precision": 0.6875,
+          "recall": 0.7857142857142857,
+          "f1": 0.7333333333333333,
+          "support": 28
+        },
+        "PushUps": {
+          "precision": 0.7941176470588235,
+          "recall": 0.9,
+          "f1": 0.84375,
+          "support": 30
+        }
+      },
+      "confusion_matrix": [
+        [
+          23,
+          2,
+          2,
+          3
+        ],
+        [
+          4,
+          25,
+          8,
+          0
+        ],
+        [
+          0,
+          2,
+          22,
+          4
+        ],
+        [
+          3,
+          0,
+          0,
+          27
+        ]
+      ],
+      "accuracy_ci95_group_bootstrap": [
+        0.6298990347980696,
+        0.912
+      ]
+    },
+    "cnn_flow_svm": {
+      "display_name": "MobileNetV3 mean pooling + optical flow + SVM",
+      "input_dim": 1096,
+      "validation": {
+        "val_accuracy": 0.92,
+        "val_macro_f1": 0.9227941176470589
+      },
+      "selected_hyperparameters": {
+        "C": 0.0001,
+        "val_accuracy": 0.92,
+        "val_macro_f1": 0.9227941176470589,
+        "training_seconds": 0.019
+      },
+      "candidates": [
+        {
+          "C": 0.0001,
+          "val_accuracy": 0.92,
+          "val_macro_f1": 0.9227941176470589,
+          "training_seconds": 0.019
+        },
+        {
+          "C": 0.0003,
+          "val_accuracy": 0.92,
+          "val_macro_f1": 0.9209473150962513,
+          "training_seconds": 0.0219
+        },
+        {
+          "C": 0.001,
+          "val_accuracy": 0.92,
+          "val_macro_f1": 0.9209473150962513,
+          "training_seconds": 0.0341
+        },
+        {
+          "C": 0.003,
+          "val_accuracy": 0.8933333333333333,
+          "val_macro_f1": 0.8933157361488828,
+          "training_seconds": 0.069
+        },
+        {
+          "C": 0.01,
+          "val_accuracy": 0.8933333333333333,
+          "val_macro_f1": 0.8920544113907958,
+          "training_seconds": 0.103
+        },
+        {
+          "C": 0.1,
+          "val_accuracy": 0.8933333333333333,
+          "val_macro_f1": 0.8920544113907958,
+          "training_seconds": 0.1527
+        },
+        {
+          "C": 1.0,
+          "val_accuracy": 0.8933333333333333,
+          "val_macro_f1": 0.8920544113907958,
+          "training_seconds": 0.1821
+        },
+        {
+          "C": 10.0,
+          "val_accuracy": 0.8933333333333333,
+          "val_macro_f1": 0.8920544113907958,
+          "training_seconds": 0.1863
+        }
+      ],
+      "num_videos": 125,
+      "accuracy": 0.792,
+      "accuracy_ci95": [
+        0.7126703312982824,
+        0.853916857932525
+      ],
+      "macro_precision": 0.7937299273157539,
+      "macro_recall": 0.7982947232947233,
+      "macro_f1": 0.7917608512930155,
+      "per_class": {
+        "BodyWeightSquats": {
+          "precision": 0.7586206896551724,
+          "recall": 0.7333333333333333,
+          "f1": 0.7457627118644068,
+          "support": 30
+        },
+        "JumpingJack": {
+          "precision": 0.8666666666666667,
+          "recall": 0.7027027027027027,
+          "f1": 0.7761194029850746,
+          "support": 37
+        },
+        "PullUps": {
+          "precision": 0.7058823529411765,
+          "recall": 0.8571428571428571,
+          "f1": 0.7741935483870968,
+          "support": 28
+        },
+        "PushUps": {
+          "precision": 0.84375,
+          "recall": 0.9,
+          "f1": 0.8709677419354839,
+          "support": 30
+        }
+      },
+      "confusion_matrix": [
+        [
+          22,
+          2,
+          3,
+          3
+        ],
+        [
+          4,
+          26,
+          7,
+          0
+        ],
+        [
+          0,
+          2,
+          24,
+          2
+        ],
+        [
+          3,
+          0,
+          0,
+          27
+        ]
+      ],
+      "accuracy_ci95_group_bootstrap": [
+        0.6503677155092161,
+        0.9231060606060605
+      ]
+    },
+    "r3d_pooled_svm": {
+      "display_name": "R3D-18 mean pooling + SVM",
+      "input_dim": 512,
+      "validation": {
+        "val_accuracy": 0.9866666666666667,
+        "val_macro_f1": 0.9863266814486327
+      },
+      "selected_hyperparameters": {
+        "C": 0.001,
+        "val_accuracy": 0.9866666666666667,
+        "val_macro_f1": 0.9863266814486327,
+        "training_seconds": 0.0137
+      },
+      "candidates": [
+        {
+          "C": 0.0001,
+          "val_accuracy": 0.9733333333333334,
+          "val_macro_f1": 0.9727941176470589,
+          "training_seconds": 0.0097
+        },
+        {
+          "C": 0.0003,
+          "val_accuracy": 0.9733333333333334,
+          "val_macro_f1": 0.9727941176470589,
+          "training_seconds": 0.0098
+        },
+        {
+          "C": 0.001,
+          "val_accuracy": 0.9866666666666667,
+          "val_macro_f1": 0.9863266814486327,
+          "training_seconds": 0.0137
+        },
+        {
+          "C": 0.003,
+          "val_accuracy": 0.9866666666666667,
+          "val_macro_f1": 0.9863266814486327,
+          "training_seconds": 0.0182
+        },
+        {
+          "C": 0.01,
+          "val_accuracy": 0.9866666666666667,
+          "val_macro_f1": 0.9863266814486327,
+          "training_seconds": 0.0272
+        },
+        {
+          "C": 0.1,
+          "val_accuracy": 0.9866666666666667,
+          "val_macro_f1": 0.9863266814486327,
+          "training_seconds": 0.0494
+        },
+        {
+          "C": 1.0,
+          "val_accuracy": 0.9866666666666667,
+          "val_macro_f1": 0.9863266814486327,
+          "training_seconds": 0.065
+        },
+        {
+          "C": 10.0,
+          "val_accuracy": 0.9866666666666667,
+          "val_macro_f1": 0.9863266814486327,
+          "training_seconds": 0.0582
+        }
+      ],
+      "num_videos": 125,
+      "accuracy": 1.0,
+      "accuracy_ci95": [
+        0.9701835432034374,
+        1.0
+      ],
+      "macro_precision": 1.0,
+      "macro_recall": 1.0,
+      "macro_f1": 1.0,
+      "per_class": {
+        "BodyWeightSquats": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 30
+        },
+        "JumpingJack": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 37
+        },
+        "PullUps": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 28
+        },
+        "PushUps": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 30
+        }
+      },
+      "confusion_matrix": [
+        [
+          30,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          37,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          28,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          30
+        ]
+      ],
+      "accuracy_ci95_group_bootstrap": [
+        1.0,
+        1.0
+      ]
+    },
+    "r3d_flow_svm": {
+      "display_name": "R3D-18 mean pooling + optical flow + SVM",
+      "input_dim": 584,
+      "validation": {
+        "val_accuracy": 0.9866666666666667,
+        "val_macro_f1": 0.9863266814486327
+      },
+      "selected_hyperparameters": {
+        "C": 0.1,
+        "val_accuracy": 0.9866666666666667,
+        "val_macro_f1": 0.9863266814486327,
+        "training_seconds": 0.0533
+      },
+      "candidates": [
+        {
+          "C": 0.0001,
+          "val_accuracy": 0.9733333333333334,
+          "val_macro_f1": 0.9727941176470589,
+          "training_seconds": 0.0133
+        },
+        {
+          "C": 0.0003,
+          "val_accuracy": 0.9733333333333334,
+          "val_macro_f1": 0.9727941176470589,
+          "training_seconds": 0.0108
+        },
+        {
+          "C": 0.001,
+          "val_accuracy": 0.9733333333333334,
+          "val_macro_f1": 0.9727941176470589,
+          "training_seconds": 0.0142
+        },
+        {
+          "C": 0.003,
+          "val_accuracy": 0.9733333333333334,
+          "val_macro_f1": 0.9727941176470589,
+          "training_seconds": 0.0206
+        },
+        {
+          "C": 0.01,
+          "val_accuracy": 0.9733333333333334,
+          "val_macro_f1": 0.9727941176470589,
+          "training_seconds": 0.0309
+        },
+        {
+          "C": 0.1,
+          "val_accuracy": 0.9866666666666667,
+          "val_macro_f1": 0.9863266814486327,
+          "training_seconds": 0.0533
+        },
+        {
+          "C": 1.0,
+          "val_accuracy": 0.9866666666666667,
+          "val_macro_f1": 0.9863266814486327,
+          "training_seconds": 0.0572
+        },
+        {
+          "C": 10.0,
+          "val_accuracy": 0.9866666666666667,
+          "val_macro_f1": 0.9863266814486327,
+          "training_seconds": 0.0554
+        }
+      ],
+      "num_videos": 125,
+      "accuracy": 0.984,
+      "accuracy_ci95": [
+        0.9435363778299932,
+        0.9956012919909341
+      ],
+      "macro_precision": 0.9871794871794872,
+      "macro_recall": 0.9833333333333334,
+      "macro_f1": 0.9848003629764066,
+      "per_class": {
+        "BodyWeightSquats": {
+          "precision": 1.0,
+          "recall": 0.9333333333333333,
+          "f1": 0.9655172413793104,
+          "support": 30
+        },
+        "JumpingJack": {
+          "precision": 0.9487179487179487,
+          "recall": 1.0,
+          "f1": 0.9736842105263158,
+          "support": 37
+        },
+        "PullUps": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 28
+        },
+        "PushUps": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 30
+        }
+      },
+      "confusion_matrix": [
+        [
+          28,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          37,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          28,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          30
+        ]
+      ],
+      "accuracy_ci95_group_bootstrap": [
+        0.9508196721311475,
+        1.0
+      ]
+    }
+  },
+  "decisions": {
+    "cnn": {
+      "retained": false,
+      "validation_videos_gained": 0,
+      "validation_macro_f1_gain": 0.0018468025508076025,
+      "reason": "Adding flow changed validation accuracy by +0 video(s) and macro-F1 by +0.002; at least 2 more correct validation videos and a higher macro-F1 are required, so flow fusion is not used."
+    },
+    "r3d": {
+      "retained": false,
+      "validation_videos_gained": 0,
+      "validation_macro_f1_gain": 0.0,
+      "reason": "Adding flow changed validation accuracy by +0 video(s) and macro-F1 by +0.000; at least 2 more correct validation videos and a higher macro-F1 are required, so flow fusion is not used."
+    }
+  }
+}

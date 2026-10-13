@@ -1,0 +1,9 @@
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"
+
+[server]
+# Largest video that can be uploaded, in MB.
+maxUploadSize = 200

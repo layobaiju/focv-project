@@ -1,0 +1,23 @@
+# VisionAct dependencies (CPU only).
+#
+# The lower bounds are the versions the project was developed and tested with
+# (Python 3.14, Windows 11). Older versions may work but are untested; the
+# Streamlit bound matters because the app uses recent layout parameters.
+# requirements-lock.txt lists the exact versions of every installed package.
+#
+# On Windows and macOS, `pip install torch` already gives a CPU build. On Linux
+# it pulls a large CUDA build; for a CPU-only install use:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+numpy>=2.5
+opencv-python-headless>=5.0
+torch>=2.14
+torchvision>=0.29
+scikit-learn>=1.9
+scipy>=1.18
+joblib>=1.6
+streamlit>=1.65
+matplotlib>=3.11
+
+# Tests
+pytest>=9.1

@@ -1,0 +1,37 @@
+{
+  "seed": 42,
+  "classes": ["BodyWeightSquats", "JumpingJack", "PullUps", "PushUps"],
+  "dataset_dir": "data/UCF101",
+  "split_mode": "ucf101_split1",
+  "num_val_groups": 4,
+
+  "num_frames": 16,
+  "hidden_dim": 128,
+  "num_layers": 1,
+  "dropout": 0.3,
+  "epochs": 60,
+  "batch_size": 16,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "patience": 10,
+  "search_hidden_dims": [64, 128, 256],
+  "search_dropouts": [0.3, 0.5],
+  "search_learning_rates": [0.001, 0.0003],
+  "svm_c_grid": [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.1, 1.0, 10.0],
+
+  "augment_copies": 4,
+  "augment_brightness": 0.2,
+  "augment_hflip": true,
+
+  "r3d_clip_len": 16,
+  "r3d_target_fps": 15.0,
+  "r3d_clips_per_video": 5,
+  "r3d_head_learning_rate": 0.001,
+  "r3d_head_batch_size": 32,
+  "r3d_head_epochs": 200,
+  "r3d_head_patience": 20,
+  "r3d_head_dropouts": [0.0, 0.5],
+  "r3d_head_weight_decays": [0.0001, 0.01],
+
+  "torch_threads": 0
+}

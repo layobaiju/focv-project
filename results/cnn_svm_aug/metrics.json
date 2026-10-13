@@ -1,0 +1,76 @@
+{
+  "model": "CNN + SVM, augmented training",
+  "split": "test",
+  "num_videos": 125,
+  "accuracy": 0.752,
+  "accuracy_ci95": [
+    0.6695388958797917,
+    0.8194336098947408
+  ],
+  "macro_precision": 0.77007252007252,
+  "macro_recall": 0.7617438867438867,
+  "macro_f1": 0.7548223793314132,
+  "per_class": {
+    "BodyWeightSquats": {
+      "precision": 0.8518518518518519,
+      "recall": 0.7666666666666667,
+      "f1": 0.8070175438596491,
+      "support": 30
+    },
+    "JumpingJack": {
+      "precision": 0.8461538461538461,
+      "recall": 0.5945945945945946,
+      "f1": 0.6984126984126984,
+      "support": 37
+    },
+    "PullUps": {
+      "precision": 0.5641025641025641,
+      "recall": 0.7857142857142857,
+      "f1": 0.6567164179104478,
+      "support": 28
+    },
+    "PushUps": {
+      "precision": 0.8181818181818182,
+      "recall": 0.9,
+      "f1": 0.8571428571428571,
+      "support": 30
+    }
+  },
+  "confusion_matrix": [
+    [
+      23,
+      2,
+      2,
+      3
+    ],
+    [
+      0,
+      22,
+      15,
+      0
+    ],
+    [
+      1,
+      2,
+      22,
+      3
+    ],
+    [
+      3,
+      0,
+      0,
+      27
+    ]
+  ],
+  "accuracy_ci95_group_bootstrap": [
+    0.5954153035259906,
+    0.896
+  ],
+  "source_videos": {
+    "total": 28,
+    "all_clips_correct": 18,
+    "all_clips_wrong": 4,
+    "mixed": 6,
+    "share_of_errors_in_mostly_wrong_source_videos": 0.8387096774193549
+  }
+}

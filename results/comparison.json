@@ -1,0 +1,763 @@
+{
+  "generated_at": "2026-10-13T15:36:22+00:00",
+  "class_names": [
+    "BodyWeightSquats",
+    "JumpingJack",
+    "PullUps",
+    "PushUps"
+  ],
+  "test_videos": 125,
+  "test_source_videos": 28,
+  "split": {
+    "created_at": "2026-10-13T14:42:04+00:00",
+    "dataset_dir": "C:\\Users\\layob\\OneDrive\\Desktop\\FOCV PROJECT\\data\\UCF101",
+    "classes": [
+      "BodyWeightSquats",
+      "JumpingJack",
+      "PullUps",
+      "PushUps"
+    ],
+    "seed": 42,
+    "split_mode": "ucf101_split1",
+    "split": {
+      "protocol": "UCF101 official split 1 for the test set; validation groups drawn from the training groups",
+      "test_groups": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "val_groups": [
+        9,
+        15,
+        19,
+        20
+      ],
+      "train_groups": [
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        17,
+        18,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    "counts": {
+      "train": {
+        "BodyWeightSquats": 61,
+        "JumpingJack": 64,
+        "PullUps": 56,
+        "PushUps": 56
+      },
+      "val": {
+        "BodyWeightSquats": 21,
+        "JumpingJack": 22,
+        "PullUps": 16,
+        "PushUps": 16
+      },
+      "test": {
+        "BodyWeightSquats": 30,
+        "JumpingJack": 37,
+        "PullUps": 28,
+        "PushUps": 30
+      }
+    },
+    "totals": {
+      "train": 237,
+      "val": 75,
+      "test": 125
+    },
+    "num_videos": 437,
+    "frames_per_video": {
+      "min": 29,
+      "max": 267,
+      "mean": 107.40732265446225
+    },
+    "excluded_files": []
+  },
+  "feature_extractors": {
+    "mobilenet_v3_small": {
+      "name": "mobilenet_v3_small",
+      "pretrained_on": "ImageNet (IMAGENET1K_V1)",
+      "frozen": true,
+      "feature_dim": 1024,
+      "parameters": 1517856,
+      "size_mb": 6.200731
+    },
+    "r3d_18": {
+      "name": "r3d_18",
+      "pretrained_on": "Kinetics-400 (KINETICS400_V1)",
+      "frozen": true,
+      "feature_dim": 512,
+      "parameters": 33166272,
+      "size_mb": 132.742991
+    }
+  },
+  "models": {
+    "cnn_svm": {
+      "display_name": "CNN + mean pooling + linear SVM",
+      "backbone": "mobilenet_v3_small",
+      "augmented_training": false,
+      "num_videos": 125,
+      "accuracy": 0.776,
+      "accuracy_ci95": [
+        0.6953100627209139,
+        0.8402312531273837
+      ],
+      "macro_precision": 0.7775883198106829,
+      "macro_recall": 0.782014157014157,
+      "macro_f1": 0.7753314393939394,
+      "per_class": {
+        "BodyWeightSquats": {
+          "precision": 0.7666666666666667,
+          "recall": 0.7666666666666667,
+          "f1": 0.7666666666666667,
+          "support": 30
+        },
+        "JumpingJack": {
+          "precision": 0.8620689655172413,
+          "recall": 0.6756756756756757,
+          "f1": 0.7575757575757576,
+          "support": 37
+        },
+        "PullUps": {
+          "precision": 0.6875,
+          "recall": 0.7857142857142857,
+          "f1": 0.7333333333333333,
+          "support": 28
+        },
+        "PushUps": {
+          "precision": 0.7941176470588235,
+          "recall": 0.9,
+          "f1": 0.84375,
+          "support": 30
+        }
+      },
+      "confusion_matrix": [
+        [
+          23,
+          2,
+          2,
+          3
+        ],
+        [
+          4,
+          25,
+          8,
+          0
+        ],
+        [
+          0,
+          2,
+          22,
+          4
+        ],
+        [
+          3,
+          0,
+          0,
+          27
+        ]
+      ],
+      "accuracy_ci95_group_bootstrap": [
+        0.6298990347980696,
+        0.912
+      ],
+      "source_videos": {
+        "total": 28,
+        "all_clips_correct": 19,
+        "all_clips_wrong": 4,
+        "mixed": 5,
+        "share_of_errors_in_mostly_wrong_source_videos": 0.7857142857142857
+      },
+      "validation": {
+        "val_accuracy": 0.92,
+        "val_macro_f1": 0.9209473150962513
+      },
+      "selected_hyperparameters": {
+        "C": 0.0001,
+        "val_accuracy": 0.92,
+        "val_macro_f1": 0.9209473150962513,
+        "training_seconds": 0.0239
+      },
+      "training_seconds": 0.0239,
+      "search_seconds": 0.7835,
+      "trainable_parameters": null,
+      "model_size_mb": 0.058776,
+      "total_size_mb": 6.259507,
+      "inference_ms_per_video": 155.59894999023527
+    },
+    "cnn_lstm": {
+      "display_name": "CNN + LSTM",
+      "backbone": "mobilenet_v3_small",
+      "augmented_training": false,
+      "num_videos": 125,
+      "accuracy": 0.744,
+      "accuracy_ci95": [
+        0.6610155355210199,
+        0.8124340335622575
+      ],
+      "macro_precision": 0.7534022002772003,
+      "macro_recall": 0.7540057915057915,
+      "macro_f1": 0.7445370042144236,
+      "per_class": {
+        "BodyWeightSquats": {
+          "precision": 0.7333333333333333,
+          "recall": 0.7333333333333333,
+          "f1": 0.7333333333333333,
+          "support": 30
+        },
+        "JumpingJack": {
+          "precision": 0.8461538461538461,
+          "recall": 0.5945945945945946,
+          "f1": 0.6984126984126984,
+          "support": 37
+        },
+        "PullUps": {
+          "precision": 0.6216216216216216,
+          "recall": 0.8214285714285714,
+          "f1": 0.7076923076923077,
+          "support": 28
+        },
+        "PushUps": {
+          "precision": 0.8125,
+          "recall": 0.8666666666666667,
+          "f1": 0.8387096774193549,
+          "support": 30
+        }
+      },
+      "confusion_matrix": [
+        [
+          22,
+          3,
+          3,
+          2
+        ],
+        [
+          4,
+          22,
+          11,
+          0
+        ],
+        [
+          0,
+          1,
+          23,
+          4
+        ],
+        [
+          4,
+          0,
+          0,
+          26
+        ]
+      ],
+      "accuracy_ci95_group_bootstrap": [
+        0.5901385182361164,
+        0.897457627118644
+      ],
+      "source_videos": {
+        "total": 28,
+        "all_clips_correct": 18,
+        "all_clips_wrong": 5,
+        "mixed": 5,
+        "share_of_errors_in_mostly_wrong_source_videos": 0.84375
+      },
+      "validation": {
+        "val_accuracy": 0.88,
+        "val_macro_f1": 0.8805917837114782
+      },
+      "selected_hyperparameters": {
+        "hidden_dim": 128,
+        "num_layers": 1,
+        "dropout": 0.3,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "batch_size": 16,
+        "epochs": 60,
+        "patience": 10,
+        "best_epoch": 12,
+        "epochs_run": 22,
+        "val_loss": 0.4588617980480194,
+        "val_accuracy": 0.88,
+        "val_macro_f1": 0.8805917837114782
+      },
+      "training_seconds": 6.721,
+      "search_seconds": 117.694,
+      "trainable_parameters": 591364,
+      "model_size_mb": 2.377761,
+      "total_size_mb": 8.578492,
+      "inference_ms_per_video": 135.07114991080016
+    },
+    "cnn_svm_aug": {
+      "display_name": "CNN + SVM, augmented training",
+      "backbone": "mobilenet_v3_small",
+      "augmented_training": true,
+      "num_videos": 125,
+      "accuracy": 0.752,
+      "accuracy_ci95": [
+        0.6695388958797917,
+        0.8194336098947408
+      ],
+      "macro_precision": 0.77007252007252,
+      "macro_recall": 0.7617438867438867,
+      "macro_f1": 0.7548223793314132,
+      "per_class": {
+        "BodyWeightSquats": {
+          "precision": 0.8518518518518519,
+          "recall": 0.7666666666666667,
+          "f1": 0.8070175438596491,
+          "support": 30
+        },
+        "JumpingJack": {
+          "precision": 0.8461538461538461,
+          "recall": 0.5945945945945946,
+          "f1": 0.6984126984126984,
+          "support": 37
+        },
+        "PullUps": {
+          "precision": 0.5641025641025641,
+          "recall": 0.7857142857142857,
+          "f1": 0.6567164179104478,
+          "support": 28
+        },
+        "PushUps": {
+          "precision": 0.8181818181818182,
+          "recall": 0.9,
+          "f1": 0.8571428571428571,
+          "support": 30
+        }
+      },
+      "confusion_matrix": [
+        [
+          23,
+          2,
+          2,
+          3
+        ],
+        [
+          0,
+          22,
+          15,
+          0
+        ],
+        [
+          1,
+          2,
+          22,
+          3
+        ],
+        [
+          3,
+          0,
+          0,
+          27
+        ]
+      ],
+      "accuracy_ci95_group_bootstrap": [
+        0.5954153035259906,
+        0.896
+      ],
+      "source_videos": {
+        "total": 28,
+        "all_clips_correct": 18,
+        "all_clips_wrong": 4,
+        "mixed": 6,
+        "share_of_errors_in_mostly_wrong_source_videos": 0.8387096774193549
+      },
+      "validation": {
+        "val_accuracy": 0.92,
+        "val_macro_f1": 0.9227941176470589
+      },
+      "selected_hyperparameters": {
+        "C": 0.0003,
+        "val_accuracy": 0.92,
+        "val_macro_f1": 0.9227941176470589,
+        "training_seconds": 0.381
+      },
+      "training_seconds": 0.381,
+      "search_seconds": 13.407,
+      "trainable_parameters": null,
+      "model_size_mb": 0.058776,
+      "total_size_mb": 6.259507,
+      "inference_ms_per_video": 131.11059996299446
+    },
+    "cnn_lstm_aug": {
+      "display_name": "CNN + LSTM, augmented training",
+      "backbone": "mobilenet_v3_small",
+      "augmented_training": true,
+      "num_videos": 125,
+      "accuracy": 0.776,
+      "accuracy_ci95": [
+        0.6953100627209139,
+        0.8402312531273837
+      ],
+      "macro_precision": 0.7878269302073528,
+      "macro_recall": 0.7891248391248392,
+      "macro_f1": 0.7774965985642251,
+      "per_class": {
+        "BodyWeightSquats": {
+          "precision": 0.7419354838709677,
+          "recall": 0.7666666666666667,
+          "f1": 0.7540983606557377,
+          "support": 30
+        },
+        "JumpingJack": {
+          "precision": 0.8461538461538461,
+          "recall": 0.5945945945945946,
+          "f1": 0.6984126984126984,
+          "support": 37
+        },
+        "PullUps": {
+          "precision": 0.6666666666666666,
+          "recall": 0.9285714285714286,
+          "f1": 0.7761194029850746,
+          "support": 28
+        },
+        "PushUps": {
+          "precision": 0.896551724137931,
+          "recall": 0.8666666666666667,
+          "f1": 0.8813559322033898,
+          "support": 30
+        }
+      },
+      "confusion_matrix": [
+        [
+          23,
+          3,
+          2,
+          2
+        ],
+        [
+          4,
+          22,
+          11,
+          0
+        ],
+        [
+          0,
+          1,
+          26,
+          1
+        ],
+        [
+          4,
+          0,
+          0,
+          26
+        ]
+      ],
+      "accuracy_ci95_group_bootstrap": [
+        0.622026366022429,
+        0.9268868830420585
+      ],
+      "source_videos": {
+        "total": 28,
+        "all_clips_correct": 20,
+        "all_clips_wrong": 5,
+        "mixed": 3,
+        "share_of_errors_in_mostly_wrong_source_videos": 0.8571428571428571
+      },
+      "validation": {
+        "val_accuracy": 0.8666666666666667,
+        "val_macro_f1": 0.8665532879818594
+      },
+      "selected_hyperparameters": {
+        "hidden_dim": 128,
+        "num_layers": 1,
+        "dropout": 0.3,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "batch_size": 16,
+        "epochs": 60,
+        "patience": 10,
+        "best_epoch": 7,
+        "epochs_run": 17,
+        "val_loss": 0.5214800834655762,
+        "val_accuracy": 0.8666666666666667,
+        "val_macro_f1": 0.8665532879818594
+      },
+      "training_seconds": 24.33,
+      "search_seconds": 398.477,
+      "trainable_parameters": 591364,
+      "model_size_mb": 2.377747,
+      "total_size_mb": 8.578478,
+      "inference_ms_per_video": 130.79455005936325
+    },
+    "r3d18_head": {
+      "display_name": "R3D-18 (Kinetics-400, frozen) + linear head",
+      "backbone": "r3d_18",
+      "augmented_training": true,
+      "num_videos": 125,
+      "accuracy": 1.0,
+      "accuracy_ci95": [
+        0.9701835432034374,
+        1.0
+      ],
+      "macro_precision": 1.0,
+      "macro_recall": 1.0,
+      "macro_f1": 1.0,
+      "per_class": {
+        "BodyWeightSquats": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 30
+        },
+        "JumpingJack": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 37
+        },
+        "PullUps": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 28
+        },
+        "PushUps": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 30
+        }
+      },
+      "confusion_matrix": [
+        [
+          30,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          37,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          28,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          30
+        ]
+      ],
+      "accuracy_ci95_group_bootstrap": [
+        1.0,
+        1.0
+      ],
+      "source_videos": {
+        "total": 28,
+        "all_clips_correct": 28,
+        "all_clips_wrong": 0,
+        "mixed": 0,
+        "share_of_errors_in_mostly_wrong_source_videos": 0.0
+      },
+      "validation": {
+        "val_accuracy": 0.9866666666666667,
+        "val_macro_f1": 0.9863266814486327
+      },
+      "selected_hyperparameters": {
+        "augmented": true,
+        "dropout": 0.0,
+        "weight_decay": 0.0001,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "epochs": 200,
+        "patience": 20,
+        "training_clips": 2133,
+        "best_epoch": 67,
+        "epochs_run": 87,
+        "val_loss": 0.03421128913760185,
+        "val_accuracy": 0.9866666666666667,
+        "val_macro_f1": 0.9863266814486327,
+        "training_seconds": 12.585
+      },
+      "training_seconds": 12.585,
+      "search_seconds": 56.154,
+      "trainable_parameters": 2052,
+      "model_size_mb": 0.015341,
+      "total_size_mb": 132.758332,
+      "inference_ms_per_video": 1996.1409500101581
+    }
+  },
+  "reference_model": "cnn_svm",
+  "best_validated_model": "r3d18_head",
+  "paired_comparisons": {
+    "cnn_lstm": {
+      "both_correct": 92,
+      "only_first_correct": 5,
+      "only_second_correct": 1,
+      "both_wrong": 27,
+      "mcnemar_exact_p": 0.21875
+    },
+    "cnn_svm_aug": {
+      "both_correct": 93,
+      "only_first_correct": 4,
+      "only_second_correct": 1,
+      "both_wrong": 27,
+      "mcnemar_exact_p": 0.375
+    },
+    "cnn_lstm_aug": {
+      "both_correct": 93,
+      "only_first_correct": 4,
+      "only_second_correct": 4,
+      "both_wrong": 24,
+      "mcnemar_exact_p": 1.0
+    },
+    "r3d18_head": {
+      "both_correct": 97,
+      "only_first_correct": 0,
+      "only_second_correct": 28,
+      "both_wrong": 0,
+      "mcnemar_exact_p": 7.450580596923828e-09
+    }
+  },
+  "temporal_order_ablation": {
+    "cnn_lstm": {
+      "original_order_accuracy": 0.744,
+      "reversed_order_accuracy": 0.768,
+      "shuffled_order_accuracy": 0.768
+    },
+    "cnn_lstm_aug": {
+      "original_order_accuracy": 0.776,
+      "reversed_order_accuracy": 0.768,
+      "shuffled_order_accuracy": 0.776
+    }
+  },
+  "timing": {
+    "videos_timed": 20,
+    "statistic": "median per stage",
+    "per_model": {
+      "cnn_svm": {
+        "decode_ms": 28.595600044354796,
+        "backbone_ms": 125.37379993591458,
+        "classifier_ms": 1.6295500099658966,
+        "total_ms": 155.59894999023527,
+        "input": "16 frames, MobileNetV3-Small features averaged over time"
+      },
+      "cnn_lstm": {
+        "decode_ms": 24.131249985657632,
+        "backbone_ms": 108.87520003598183,
+        "classifier_ms": 2.0646998891606927,
+        "total_ms": 135.07114991080016,
+        "input": "16 frames, MobileNetV3-Small features read in order"
+      },
+      "cnn_svm_aug": {
+        "decode_ms": 24.359700037166476,
+        "backbone_ms": 105.32440000679344,
+        "classifier_ms": 1.4264999190345407,
+        "total_ms": 131.11059996299446,
+        "input": "16 frames, MobileNetV3-Small features averaged over time"
+      },
+      "cnn_lstm_aug": {
+        "decode_ms": 23.12520006671548,
+        "backbone_ms": 105.57469993364066,
+        "classifier_ms": 2.094650059007108,
+        "total_ms": 130.79455005936325,
+        "input": "16 frames, MobileNetV3-Small features read in order"
+      },
+      "r3d18_head": {
+        "decode_ms": 28.688049991615117,
+        "backbone_ms": 1966.766249970533,
+        "classifier_ms": 0.6866500480100513,
+        "total_ms": 1996.1409500101581,
+        "input": "5 clips of 16 frames at about 15 fps, R3D-18 features"
+      }
+    }
+  },
+  "config": {
+    "seed": 42,
+    "classes": [
+      "BodyWeightSquats",
+      "JumpingJack",
+      "PullUps",
+      "PushUps"
+    ],
+    "dataset_dir": "C:\\Users\\layob\\OneDrive\\Desktop\\FOCV PROJECT\\data\\UCF101",
+    "artifacts_dir": "C:\\Users\\layob\\OneDrive\\Desktop\\FOCV PROJECT\\artifacts",
+    "results_dir": "C:\\Users\\layob\\OneDrive\\Desktop\\FOCV PROJECT\\results",
+    "split_mode": "ucf101_split1",
+    "test_groups": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "num_val_groups": 4,
+    "val_fraction": 0.15,
+    "test_fraction": 0.25,
+    "num_frames": 16,
+    "hidden_dim": 128,
+    "num_layers": 1,
+    "dropout": 0.3,
+    "epochs": 60,
+    "batch_size": 16,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "patience": 10,
+    "search_hidden_dims": [
+      64,
+      128,
+      256
+    ],
+    "search_dropouts": [
+      0.3,
+      0.5
+    ],
+    "search_learning_rates": [
+      0.001,
+      0.0003
+    ],
+    "svm_c_grid": [
+      0.0001,
+      0.0003,
+      0.001,
+      0.003,
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "augment_copies": 4,
+    "augment_brightness": 0.2,
+    "augment_hflip": true,
+    "r3d_clip_len": 16,
+    "r3d_target_fps": 15.0,
+    "r3d_clips_per_video": 5,
+    "r3d_head_learning_rate": 0.001,
+    "r3d_head_batch_size": 32,
+    "r3d_head_epochs": 200,
+    "r3d_head_patience": 20,
+    "r3d_head_dropouts": [
+      0.0,
+      0.5
+    ],
+    "r3d_head_weight_decays": [
+      0.0001,
+      0.01
+    ],
+    "torch_threads": 0
+  }
+}

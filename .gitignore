@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Dataset, cached CNN features and trained models are large or regenerable.
+# results/ is deliberately NOT ignored: it holds the small metric and
+# prediction files that document the experiment.
+data/
+artifacts/
+
+# Local overrides and machine-specific tool settings
+config.json
+.claude/
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

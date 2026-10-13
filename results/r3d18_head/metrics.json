@@ -1,0 +1,76 @@
+{
+  "model": "R3D-18 (Kinetics-400, frozen) + linear head",
+  "split": "test",
+  "num_videos": 125,
+  "accuracy": 1.0,
+  "accuracy_ci95": [
+    0.9701835432034374,
+    1.0
+  ],
+  "macro_precision": 1.0,
+  "macro_recall": 1.0,
+  "macro_f1": 1.0,
+  "per_class": {
+    "BodyWeightSquats": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 30
+    },
+    "JumpingJack": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 37
+    },
+    "PullUps": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 28
+    },
+    "PushUps": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 30
+    }
+  },
+  "confusion_matrix": [
+    [
+      30,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      37,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      28,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      30
+    ]
+  ],
+  "accuracy_ci95_group_bootstrap": [
+    1.0,
+    1.0
+  ],
+  "source_videos": {
+    "total": 28,
+    "all_clips_correct": 28,
+    "all_clips_wrong": 0,
+    "mixed": 0,
+    "share_of_errors_in_mostly_wrong_source_videos": 0.0
+  }
+}

@@ -1,0 +1,422 @@
+{
+  "dataset": {
+    "per_class": {
+      "BodyWeightSquats": {
+        "videos": 112,
+        "groups": 25,
+        "clips_per_group": {
+          "min": 4,
+          "max": 7
+        },
+        "frames": {
+          "min": 48,
+          "median": 115.0,
+          "max": 267
+        },
+        "frame_rates": {
+          "25.0": 112
+        },
+        "split_videos": {
+          "train": 61,
+          "val": 21,
+          "test": 30
+        },
+        "split_groups": {
+          "train": 14,
+          "val": 4,
+          "test": 7
+        }
+      },
+      "JumpingJack": {
+        "videos": 123,
+        "groups": 25,
+        "clips_per_group": {
+          "min": 4,
+          "max": 7
+        },
+        "frames": {
+          "min": 54,
+          "median": 85.0,
+          "max": 140
+        },
+        "frame_rates": {
+          "29.97": 123
+        },
+        "split_videos": {
+          "train": 64,
+          "val": 22,
+          "test": 37
+        },
+        "split_groups": {
+          "train": 14,
+          "val": 4,
+          "test": 7
+        }
+      },
+      "PullUps": {
+        "videos": 100,
+        "groups": 25,
+        "clips_per_group": {
+          "min": 4,
+          "max": 4
+        },
+        "frames": {
+          "min": 67,
+          "median": 138.0,
+          "max": 249
+        },
+        "frame_rates": {
+          "29.97": 100
+        },
+        "split_videos": {
+          "train": 56,
+          "val": 16,
+          "test": 28
+        },
+        "split_groups": {
+          "train": 14,
+          "val": 4,
+          "test": 7
+        }
+      },
+      "PushUps": {
+        "videos": 102,
+        "groups": 25,
+        "clips_per_group": {
+          "min": 4,
+          "max": 5
+        },
+        "frames": {
+          "min": 29,
+          "median": 76.5,
+          "max": 166
+        },
+        "frame_rates": {
+          "25.0": 102
+        },
+        "split_videos": {
+          "train": 56,
+          "val": 16,
+          "test": 30
+        },
+        "split_groups": {
+          "train": 14,
+          "val": 4,
+          "test": 7
+        }
+      }
+    },
+    "train_imbalance_ratio": 1.1428571428571428,
+    "chance_accuracy": 0.25
+  },
+  "labels_and_files": {
+    "videos_checked": 437,
+    "decodable": 437,
+    "undecodable": [],
+    "name_label_mismatches": []
+  },
+  "split_independence": {
+    "source_videos": 100,
+    "source_videos_in_more_than_one_split": 0,
+    "source_videos_per_split": {
+      "train": 56,
+      "val": 16,
+      "test": 28
+    }
+  },
+  "exact_duplicate_files": [],
+  "near_duplicates": {
+    "method": "cosine similarity of mean-pooled MobileNetV3 features",
+    "within_source_video_similarity": {
+      "median": 0.9736543297767639,
+      "p10": 0.7901254892349243
+    },
+    "cross_source_similarity": {
+      "median": 0.3215238153934479,
+      "max": 0.7531687617301941
+    },
+    "cross_split_pairs_above_within_source_median": 0,
+    "most_similar_cross_split_pairs": []
+  },
+  "feature_cache": {
+    "videos_rechecked": 6,
+    "max_abs_difference": 0.0,
+    "consistent": true
+  },
+  "saved_models": {
+    "cnn_svm": {
+      "accuracy": {
+        "train": 1.0,
+        "val": 0.92,
+        "test": 0.776
+      },
+      "train_minus_test_accuracy": 0.22399999999999998,
+      "stored_test_predictions_reproduced": true,
+      "test_accuracy_ci95_group_bootstrap": [
+        0.6298990347980696,
+        0.912
+      ],
+      "test_accuracy_by_source_video": {
+        "total": 28,
+        "all_clips_correct": 19,
+        "all_clips_wrong": 4,
+        "mixed": 5,
+        "share_of_errors_in_mostly_wrong_source_videos": 0.7857142857142857
+      }
+    },
+    "cnn_lstm": {
+      "accuracy": {
+        "train": 1.0,
+        "val": 0.88,
+        "test": 0.744
+      },
+      "train_minus_test_accuracy": 0.256,
+      "stored_test_predictions_reproduced": true,
+      "test_accuracy_ci95_group_bootstrap": [
+        0.5901385182361164,
+        0.897457627118644
+      ],
+      "test_accuracy_by_source_video": {
+        "total": 28,
+        "all_clips_correct": 18,
+        "all_clips_wrong": 5,
+        "mixed": 5,
+        "share_of_errors_in_mostly_wrong_source_videos": 0.84375
+      }
+    },
+    "cnn_svm_aug": {
+      "accuracy": {
+        "train": 1.0,
+        "val": 0.92,
+        "test": 0.752
+      },
+      "train_minus_test_accuracy": 0.248,
+      "stored_test_predictions_reproduced": true,
+      "test_accuracy_ci95_group_bootstrap": [
+        0.5954153035259906,
+        0.896
+      ],
+      "test_accuracy_by_source_video": {
+        "total": 28,
+        "all_clips_correct": 18,
+        "all_clips_wrong": 4,
+        "mixed": 6,
+        "share_of_errors_in_mostly_wrong_source_videos": 0.8387096774193549
+      }
+    },
+    "cnn_lstm_aug": {
+      "accuracy": {
+        "train": 1.0,
+        "val": 0.8666666666666667,
+        "test": 0.776
+      },
+      "train_minus_test_accuracy": 0.22399999999999998,
+      "stored_test_predictions_reproduced": true,
+      "test_accuracy_ci95_group_bootstrap": [
+        0.622026366022429,
+        0.9268868830420585
+      ],
+      "test_accuracy_by_source_video": {
+        "total": 28,
+        "all_clips_correct": 20,
+        "all_clips_wrong": 5,
+        "mixed": 3,
+        "share_of_errors_in_mostly_wrong_source_videos": 0.8571428571428571
+      }
+    },
+    "r3d18_head": {
+      "accuracy": {
+        "train": 1.0,
+        "val": 0.9866666666666667,
+        "test": 1.0
+      },
+      "train_minus_test_accuracy": 0.0,
+      "stored_test_predictions_reproduced": true,
+      "test_accuracy_ci95_group_bootstrap": [
+        1.0,
+        1.0
+      ],
+      "test_accuracy_by_source_video": {
+        "total": 28,
+        "all_clips_correct": 28,
+        "all_clips_wrong": 0,
+        "mixed": 0,
+        "share_of_errors_in_mostly_wrong_source_videos": 0.0
+      }
+    }
+  },
+  "training_curves": {
+    "cnn_lstm": {
+      "epochs_run": 22,
+      "best_epoch": 13,
+      "at_best_epoch": {
+        "train_loss": 0.007075670591795243,
+        "val_loss": 0.45885342359542847
+      },
+      "at_last_epoch": {
+        "train_loss": 0.0027044750946546405,
+        "val_loss": 0.46604201197624207
+      },
+      "gap_at_best_epoch": 0.4517777530036332,
+      "overfitting_after_best_epoch": true
+    },
+    "cnn_lstm_aug": {
+      "epochs_run": 17,
+      "best_epoch": 7,
+      "at_best_epoch": {
+        "train_loss": 0.012116815972648845,
+        "val_loss": 0.5214800834655762
+      },
+      "at_last_epoch": {
+        "train_loss": 0.002319827313114445,
+        "val_loss": 0.5484829545021057
+      },
+      "gap_at_best_epoch": 0.5093632674929274,
+      "overfitting_after_best_epoch": true
+    },
+    "r3d18_head": {
+      "epochs_run": 87,
+      "best_epoch": 70,
+      "at_best_epoch": {
+        "train_loss": 9.088958713930189e-05,
+        "val_loss": 0.03411593660712242
+      },
+      "at_last_epoch": {
+        "train_loss": 7.365357312211173e-05,
+        "val_loss": 0.03478610888123512
+      },
+      "gap_at_best_epoch": 0.03402504701998312,
+      "overfitting_after_best_epoch": true
+    }
+  },
+  "validation_variability": {
+    "mobilenet_v3_small": {
+      "svm_C": 0.0001,
+      "repetitions": 200,
+      "validation_groups": 4,
+      "mean": 0.7866284391026654,
+      "std": 0.08841782339413333,
+      "p05": 0.6230895915678525,
+      "p95": 0.92,
+      "min": 0.582089552238806,
+      "max": 1.0
+    },
+    "r3d_18": {
+      "svm_C": 0.001,
+      "repetitions": 200,
+      "validation_groups": 4,
+      "mean": 0.9889636197758207,
+      "std": 0.016134810817220863,
+      "p05": 0.9563879598662207,
+      "p95": 1.0,
+      "min": 0.9090909090909091,
+      "max": 1.0
+    }
+  },
+  "learning_curve": {
+    "mobilenet_v3_small": [
+      {
+        "training_groups_per_class": 1,
+        "mean_accuracy": 0.42784621109740295,
+        "std": 0.11860064853144084
+      },
+      {
+        "training_groups_per_class": 2,
+        "mean_accuracy": 0.5836929118939451,
+        "std": 0.09869982919273106
+      },
+      {
+        "training_groups_per_class": 4,
+        "mean_accuracy": 0.6548977073326829,
+        "std": 0.1026270775919947
+      },
+      {
+        "training_groups_per_class": 6,
+        "mean_accuracy": 0.7126846624780809,
+        "std": 0.0917271294274328
+      },
+      {
+        "training_groups_per_class": 8,
+        "mean_accuracy": 0.7150874177066682,
+        "std": 0.08184750299126302
+      },
+      {
+        "training_groups_per_class": 10,
+        "mean_accuracy": 0.7189276760516019,
+        "std": 0.09424284798665031
+      },
+      {
+        "training_groups_per_class": 12,
+        "mean_accuracy": 0.7431744307194457,
+        "std": 0.06621218163164264
+      },
+      {
+        "training_groups_per_class": 14,
+        "mean_accuracy": 0.776847725666376,
+        "std": 0.08457296443090984
+      }
+    ],
+    "r3d_18": [
+      {
+        "training_groups_per_class": 1,
+        "mean_accuracy": 0.7145126870101551,
+        "std": 0.1125327680445011
+      },
+      {
+        "training_groups_per_class": 2,
+        "mean_accuracy": 0.8755369638613153,
+        "std": 0.07456545247009697
+      },
+      {
+        "training_groups_per_class": 4,
+        "mean_accuracy": 0.9600350699133674,
+        "std": 0.03752199707208308
+      },
+      {
+        "training_groups_per_class": 6,
+        "mean_accuracy": 0.9727624010842552,
+        "std": 0.03206017668505849
+      },
+      {
+        "training_groups_per_class": 8,
+        "mean_accuracy": 0.9813698940732615,
+        "std": 0.021752385752476157
+      },
+      {
+        "training_groups_per_class": 10,
+        "mean_accuracy": 0.9806332492823135,
+        "std": 0.02411569675449626
+      },
+      {
+        "training_groups_per_class": 12,
+        "mean_accuracy": 0.9848767320192882,
+        "std": 0.023322329531902913
+      },
+      {
+        "training_groups_per_class": 14,
+        "mean_accuracy": 0.9853797601987506,
+        "std": 0.018308076575441895
+      }
+    ]
+  },
+  "label_permutation_test": {
+    "mobilenet_v3_small": {
+      "true_labels_accuracy": 0.92,
+      "shuffled_labels_mean_accuracy": 0.24506666666666668,
+      "shuffled_labels_max_accuracy": 0.48,
+      "chance": 0.25,
+      "repetitions": 100,
+      "p_value": 0.009900990099009901,
+      "passes": true
+    },
+    "r3d_18": {
+      "true_labels_accuracy": 0.9866666666666667,
+      "shuffled_labels_mean_accuracy": 0.2516,
+      "shuffled_labels_max_accuracy": 0.5466666666666666,
+      "chance": 0.25,
+      "repetitions": 100,
+      "p_value": 0.009900990099009901,
+      "passes": true
+    }
+  }
+}

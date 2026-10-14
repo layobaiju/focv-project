@@ -65,100 +65,72 @@ Tested package versions: torch 2.14.1 (CPU), torchvision 0.29.1, opencv-python-h
 scikit-learn 1.9.1, scipy 1.18.1, streamlit 1.65.0, matplotlib 3.11.2. `requirements-lock.txt` lists every
 installed package with its exact version.
 
-## Installation
+## Installation and running the app
 
-### Clone and run locally (Windows PowerShell)
+### Windows desktop-style launch
 
-Open PowerShell and run:
+1. Install Git and Python 3.10 or newer.
+2. Clone the repository:
 
-~~~powershell
+```powershell
 git clone https://github.com/layobaiju/focv-project.git
 cd focv-project
+```
+
+3. Double-click **Start VisionAct.bat**.
+
+On first launch, the launcher creates an isolated Python environment under `%LOCALAPPDATA%\VisionAct`, installs the dependencies, and starts the app in your browser at <http://localhost:8501>. Initial setup needs an internet connection and can take several minutes. Later launches reuse the installed environment. Keep the launcher window open while using the app; press **Ctrl+C** in that window to stop it. If `requirements.txt` changes, the launcher installs the updated dependencies next time it runs.
+
+You can also launch it from PowerShell in the project folder:
+
+```powershell
+.\Start VisionAct.bat
+```
+
+### Manual setup
+
+These commands are for Windows PowerShell and create the environment outside the project folder, which avoids syncing its many files when the project is in OneDrive:
+
+```powershell
 py -m venv $HOME\.venvs\visionact
 & $HOME\.venvs\visionact\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 python -m streamlit run app.py
-~~~
+```
 
-The app opens at <http://localhost:8501>. Keep the PowerShell window open while using it; press **Ctrl+C** to
-stop the server. Running Streamlit through python -m uses the active environment directly, even if its Scripts
-folder is not on PATH.
+If PowerShell blocks environment activation, run the app with the environment's Python directly:
 
-The repository does not include the UCF101 videos, generated feature caches, or trained model files. Video
-Analysis, Image Processing, and Motion Analysis work without them. Recognition and evaluation need the data
-and models described below; the app reports when these files are missing.
-
-If PowerShell blocks Activate.ps1, use the environment's interpreter directly:
-
-~~~powershell
+```powershell
 & $HOME\.venvs\visionact\Scripts\python.exe -m pip install -r requirements.txt
 & $HOME\.venvs\visionact\Scripts\python.exe -m streamlit run app.py
-~~~
-
-The environment is stored outside the project folder so it is not synced with the repository. Python 3.10 or
-newer is required. On macOS or Linux, use python3 -m venv ~/.venvs/visionact and
-source ~/.venvs/visionact/bin/activate, then install with python -m pip install -r requirements.txt and launch
-with python -m streamlit run app.py. On Linux, install the CPU build of PyTorch first:
-python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu.
-
-```powershell
-py -m venv $HOME\.venvs\visionact
 ```
 
-```powershell
-& $HOME\.venvs\visionact\Scripts\Activate.ps1
+Python 3.10 or newer is required. On macOS or Linux, use `python3 -m venv ~/.venvs/visionact`, activate it with `source ~/.venvs/visionact/bin/activate`, install with `python -m pip install -r requirements.txt`, and launch with `python -m streamlit run app.py`. On Linux, install the CPU build of PyTorch first:
+
+```sh
+python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 ```
 
-```powershell
-pip install -r requirements.txt
-```
+The repository does not include the UCF101 videos, generated feature caches, or trained model files. Video Analysis, Image Processing, and Motion Analysis work without them. Model recognition and evaluation features need data and trained models; the app explains what is missing.
 
-Notes:
+### Optional: download data and train models
 
-- If this folder is inside OneDrive (or another synced folder), keep the environment outside it as above.
-  A virtual environment contains tens of thousands of files that should not be synced.
-- If PowerShell refuses to run `Activate.ps1`, skip activation and call the interpreter directly, for example
-  `& $HOME\.venvs\visionact\Scripts\python.exe -m visionact all`.
-- On macOS or Linux use `python3 -m venv ~/.venvs/visionact` and `source ~/.venvs/visionact/bin/activate`.
-  On Linux, install the CPU build of PyTorch first:
-  `pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu`.
-- The first import of PyTorch and Streamlit after installation can take a minute or more.
-
-### Optional: download data and train the models
-
-Run these from the project folder with the virtual environment activated. Training is optional if you only want
-to explore the app's video, image, and motion tools.
+Training is optional if you only want to explore the video, image, and motion tools. From the project folder with the environment activated, download the data subset and train/evaluate the models:
 
 ```powershell
 python -m visionact download
-```
-
-```powershell
 python -m visionact all
 ```
 
-```powershell
-python -m streamlit run app.py
-```
+The download command asks before fetching 437 clips (about 122 MB). The full pipeline validates and splits the data, extracts features, trains all models, and evaluates them. It asks before downloading the pretrained R3D-18 weights (about 127 MB); add `--yes` to skip that prompt. The first run can take about 45 minutes on a laptop CPU. Later runs reuse cached features.
 
-- `download` shows the size (437 clips, 122 MB) and asks before fetching anything.
-- `all` validates and splits the data, extracts features, trains every model and evaluates them. Before
-  downloading the R3D-18 weights (127 MB) it asks for confirmation; add `--yes` to skip the question. On a
-  laptop CPU the first run takes about 45 minutes, most of it R3D-18 feature extraction (about 25 minutes).
-  Later runs reuse the cached features and take about 15 minutes.
-- The app opens at `http://localhost:8501`.
-
-The app also works before any of this: the Video Analysis, Image Processing and Motion Analysis sections run on
-any uploaded video, and the model sections state what is missing instead of showing results.
-
-To classify one video from the command line:
+To classify a video from the command line:
 
 ```powershell
 python -m visionact predict path\to\video.mp4
 ```
 
-This uses the model with the best validation score (R3D-18 after a full run). Add `--model cnn_lstm`, or any
-other model key from the table under *Models*, to choose a different one.
+This selects the model with the best validation score. Add `--model cnn_lstm`, or another model key from the Models table, to select a model explicitly.
 
 ## Dataset
 

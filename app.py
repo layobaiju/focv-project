@@ -1,4 +1,4 @@
-"""VisionAct Streamlit app. Launch with:  streamlit run app.py"""
+"""VisionAct app. Launch on Windows with Start VisionAct.bat or with Streamlit directly."""
 
 from __future__ import annotations
 
